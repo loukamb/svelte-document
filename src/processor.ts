@@ -76,6 +76,9 @@ async function processSvelteFile(
       ".woff": "empty",
       ".woff2": "empty",
     },
+    outExtension: {
+      ".js": ".mjs",
+    },
     format: "esm",
   })
 
@@ -106,7 +109,7 @@ async function processSvelteFile(
     }
   }
 
-  const tmpfile = path.join(builddir, "stdin.js")
+  const tmpfile = path.join(builddir, "stdin.mjs")
   const compileResults = (await import(tmpfile))
     .default as svelteCompiler.CompileResult
 

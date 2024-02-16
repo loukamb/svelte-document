@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/env node --no-warnings --no-deprecation
 import { createPages } from "./processor.ts"
 import { generateDocument } from "./document"
 
