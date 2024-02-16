@@ -9,6 +9,9 @@ async function make() {
     bundle: true,
     minify: true,
     format: "esm",
+    outExtension: {
+      ".js": ".mjs",
+    },
   })
 }
 
