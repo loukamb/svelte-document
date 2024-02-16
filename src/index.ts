@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { createPages } from "./processor.ts"
 import { generateDocument } from "./document"
 

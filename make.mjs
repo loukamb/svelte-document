@@ -7,6 +7,7 @@ async function make() {
     platform: "node",
     packages: "external",
     bundle: true,
+    minify: true,
     format: "esm",
   })
 }
