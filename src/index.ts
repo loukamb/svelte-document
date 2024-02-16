@@ -59,7 +59,7 @@ async function main() {
     : process.cwd()
 
   // Temporary directory is always at {cwd}/.svelte-document
-  const tmp = path.join(root, ".svelte-document")
+  const tmp = path.join(__dirname, ".svelte-document")
   if (exists(tmp)) {
     await fs.rm(tmp, { recursive: true })
   }
