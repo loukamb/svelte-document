@@ -35,6 +35,11 @@ export interface SvelteDocumentOptions {
   orientation?: "portrait" | "landscape"
 
   /**
+   * Base path of the project, where files are located. Defaults to root.
+   */
+  base?: string
+
+  /**
    * Output filepath, relative to root. Defaults to "document.pdf"
    */
   out?: string
@@ -50,6 +55,11 @@ export interface SvelteDocumentState {
    * Temporary directory used during processing.
    */
   tmp: string
+
+  /**
+   * Object containing Svelte configuration.
+   */
+  svelte?: any
 }
 
 async function main() {
@@ -70,6 +80,7 @@ async function main() {
     size: "A4",
     orientation: "portrait",
     out: "document.pdf",
+    base: "",
   }
   const optsPath = path.join(root, "document.config.json")
   if (exists(optsPath)) {
@@ -79,8 +90,19 @@ async function main() {
     ) as SvelteDocumentOptions
   }
 
+  // Load "svelte.config.js", if it exists.
+  let svelteConfig: any
+  const svelteConfigPath = path.join(root, "svelte.config.js")
+  if (exists(svelteConfigPath)) {
+    svelteConfig = (await import(svelteConfigPath)).default
+  }
+
   // Construct document state.
-  const documentState = { root, tmp } as SvelteDocumentState
+  const documentState = {
+    root: path.join(root, opts.base ?? ""),
+    tmp,
+    svelte: svelteConfig,
+  } as SvelteDocumentState
 
   // Create all of the pages.
   const pages = await createPages(documentState)

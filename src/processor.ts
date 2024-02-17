@@ -1,5 +1,5 @@
 import { SvelteDocument, SvelteDocumentPage } from "./document.ts"
-import { SvelteDocumentState } from "./index.ts"
+import { SvelteDocumentOptions, SvelteDocumentState } from "./index.ts"
 
 import {
   promises as fs,
@@ -9,7 +9,6 @@ import {
 
 import path from "node:path"
 import esbuild from "esbuild"
-import esbuildSvelte from "esbuild-svelte"
 import * as svelteCompiler from "svelte/compiler"
 import sveltePlugin from "esbuild-svelte"
 
@@ -34,13 +33,17 @@ async function processSvelteFile(
   transient: SvelteTransientState,
   file: SvelteFileInfo,
 ) {
-  const compiled = svelteCompiler.compile(
-    await fs.readFile(file.path, "utf-8"),
-    {
-      name: "root",
-      generate: "ssr",
-    },
-  )
+  let svelteCode = await fs.readFile(file.path, "utf-8")
+  if (state.svelte?.preprocess) {
+    svelteCode = (
+      await svelteCompiler.preprocess(svelteCode, state.svelte.preprocess)
+    ).code
+  }
+
+  const compiled = svelteCompiler.compile(svelteCode, {
+    name: "root",
+    generate: "ssr",
+  })
 
   // Create folder for the output of each page.
   const builddir = path.join(state.tmp, `.${file.index}`)
