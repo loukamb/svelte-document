@@ -26,7 +26,7 @@ interface SvelteTransientState {
   count: number
 }
 
-const supportedFonts = [".ttf", ".otf", ".woff", "woff2"]
+const supportedFonts = [".ttf", ".otf", ".woff", ".woff2"]
 
 async function processSvelteFile(
   state: SvelteDocumentState,
