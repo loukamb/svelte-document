@@ -9,7 +9,9 @@ import {
 
 import path from "node:path"
 import esbuild from "esbuild"
+import esbuildSvelte from "esbuild-svelte"
 import * as svelteCompiler from "svelte/compiler"
+import sveltePlugin from "esbuild-svelte"
 
 interface SvelteFileInfo {
   path: string
@@ -59,6 +61,7 @@ async function processSvelteFile(
       sourcefile: path.basename(file.path),
       resolveDir: path.dirname(file.path),
     },
+    plugins: [sveltePlugin({ compilerOptions: { generate: "ssr" } })],
     loader: {
       ".css": file.allowCssImports ? "css" : "empty",
 

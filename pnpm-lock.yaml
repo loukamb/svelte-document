@@ -8,6 +8,9 @@ dependencies:
   esbuild:
     specifier: ^0.20.0
     version: 0.20.0
+  esbuild-svelte:
+    specifier: ^0.8.0
+    version: 0.8.0(esbuild@0.20.0)(svelte@4.2.11)
   jsdom:
     specifier: ^24.0.0
     version: 24.0.0
@@ -622,6 +625,18 @@ packages:
     resolution: {integrity: sha512-7dFHNmqeFSEt2ZBsCriorKnn3Z2pj+fd9kmI6QoWw4//DL+icEBfc0U7qJCisqrTsKTjw4fNFy2pW9OqStD84g==}
     dependencies:
       is-arrayish: 0.2.1
+    dev: false
+
+  /esbuild-svelte@0.8.0(esbuild@0.20.0)(svelte@4.2.11):
+    resolution: {integrity: sha512-uKcPf1kl2UGMjrfHChv4dLxGAvCNhf9s72mHo19ZhKP+LrVOuQkOM/g8GE7MiGpoqjpk8UHqL08uLRbSKXhmhw==}
+    engines: {node: '>=14'}
+    peerDependencies:
+      esbuild: '>=0.9.6'
+      svelte: '>=3.43.0 <5'
+    dependencies:
+      '@jridgewell/trace-mapping': 0.3.22
+      esbuild: 0.20.0
+      svelte: 4.2.11
     dev: false
 
   /esbuild@0.20.0:

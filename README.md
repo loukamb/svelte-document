@@ -69,10 +69,6 @@ You can provide a `+layout.svelte` file that will wrap every page. Its functiona
 | `orientation` | `portrait` | Orientation of the page. Accepted values: `portrait`, `landscape` |
 | `out` | `document.pdf` | Output file path/name, relative to the current working directory. |
 
-## Known issues
-- Importing `.svelte` files within `.svelte` files is broken.
-  - Fix pending on testing and integrating `esbuild-svelte` plugin.
-
 ## Roadmap
 - [ ] Better compatibility with projects using Node packages.
 - [ ] Transition to Vite.  
