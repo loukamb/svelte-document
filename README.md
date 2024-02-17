@@ -1,4 +1,3 @@
-
 <p>
     <img src="./logo.svg" width="64" height="64" align="right">
     <h1>svelte-document</h1>
@@ -7,7 +6,9 @@
 Create documents, resumes, or presentations from a collection of Svelte files. No configuration needed, and exports to a very portable PDF file.
 
 ## Usage
+
 ### Getting started
+
 Install `svelte-document` from `npm` as a global package, then invoke it in any directory containing `.svelte` pages that you want formatted into a PDF. A file called `document.pdf` will be generated in the current working directory.
 
 ```sh
@@ -19,6 +20,7 @@ svelte-document
 ```
 
 ### Page semantics and ordering
+
 To order your pages is to simply number them: `1.svelte`, `2.svelte`, `3.svelte`, and so on. The order which your filesystem presents the files do not impact the order in the document. You can also title your page by inserting any contents after a space character, like so: `5 How to Install Linux.svelte`.
 
 You can also use periods in your number to create subsections if needed, such as in `5.1 Troubleshooting.svelte`.
@@ -26,18 +28,22 @@ You can also use periods in your number to create subsections if needed, such as
 Folders are not parsed, so you can use them to store components and assets, and files starting with `+` are ignored, save for `+layout.svelte` (explained later).
 
 ### Page metadata in components
+
 You can export the following Svelte variables in a `<script>...</script>` block and they will be automatically filled in by the tool:
 
-| Variable name | Description |
-|-|-|
-| `page_name` | The name of the page provided after the page index in your file name. If there is no name, this value will be empty (`""`). |
-| `page_path` | The full path to the current page component. |
-| `page_index` | The page index from the file name. This is a string. |
-| `page_count` | The number of the page, starting from 1. This is an integer. |
+| Variable name | Description                                                                                                                 |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `page_name`   | The name of the page provided after the page index in your file name. If there is no name, this value will be empty (`""`). |
+| `page_path`   | The full path to the current page component.                                                                                |
+| `page_index`  | The page index from the file name. This is a string.                                                                        |
+| `page_count`  | The number of the page, starting from 1. This is an integer.                                                                |
 
 ### Importing assets
+
 #### Images
+
 You can import images directly like so:
+
 ```svelte
 <script>
     import img from "./my-image.png"
@@ -47,7 +53,9 @@ You can import images directly like so:
 ```
 
 #### Fonts
+
 Fonts can also be imported. The file name of the font can be used in `font-family` styling, like so:
+
 ```svelte
 <script>
     import "./FontFile.ttf"
@@ -57,11 +65,14 @@ Fonts can also be imported. The file name of the font can be used in `font-famil
 ```
 
 ### Layout
+
 You can provide a `+layout.svelte` file that will wrap every page. Its functionality is the same as [SvelteKit's `+layout.svelte`](https://kit.svelte.dev/docs/routing#layout).
->[!TIP]
->Layout files can import CSS stylesheets using import statements, like so: `import "./styles.css"`. Other pages cannot import CSS stylesheets, but can use `<style>...</style>` blocks.
+
+> [!TIP]
+> Layout files can import CSS stylesheets using import statements, like so: `import "./styles.css"`. Other pages cannot import CSS stylesheets, but can use `<style>...</style>` blocks.
 
 ## Configuration
+
 `svelte-document` is zero configuration, but you can provide optional configuration in a `document.config.json` file in the root of your document files, with the following fields:
 | Field | Default | Description |
 |-|-|-|
@@ -70,11 +81,14 @@ You can provide a `+layout.svelte` file that will wrap every page. Its functiona
 | `out` | `document.pdf` | Output file path/name, relative to the current working directory. |
 
 ## Roadmap
-- [ ] Implement PostCSS to support plugins such as TailwindCSS and Sass.
+
+- [x] Implement PostCSS to support plugins such as TailwindCSS and Sass.
+  - **Done.** `svelte.config.js` is now considered during compilation, so preprocessors (e.g. `svelte-preprocess`) can be used to implement suport for TailwindCSS, Sass, PostCSS, etc. Needs testing.
 - [ ] Implement plugin mechanism to extend functionality.
 - [ ] Better compatibility with projects using Node packages.
 
 ## License
+
 ```
 Copyright (c) 2024 Louka Ménard Blondin
 

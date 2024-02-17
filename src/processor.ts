@@ -28,6 +28,8 @@ interface SvelteTransientState {
 
 const supportedFonts = [".ttf", ".otf", ".woff", ".woff2"]
 
+// TODO: Instead of invoking esbuild per file, maybe invoke esbuild once
+// with all files as entrypoints? Should look into this
 async function processSvelteFile(
   state: SvelteDocumentState,
   transient: SvelteTransientState,
