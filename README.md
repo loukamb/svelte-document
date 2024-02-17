@@ -70,9 +70,9 @@ You can provide a `+layout.svelte` file that will wrap every page. Its functiona
 | `out` | `document.pdf` | Output file path/name, relative to the current working directory. |
 
 ## Roadmap
+- [ ] Implement PostCSS to support plugins such as TailwindCSS and Sass.
+- [ ] Implement plugin mechanism to extend functionality.
 - [ ] Better compatibility with projects using Node packages.
-- [ ] Transition to Vite.  
-  - Currently, each individual `.svelte` file is compiled using `svelte/compiler` and some transformations are executed with `esbuild` (e.g., for import statements). However, I want to look into using Vite instead as it has a broader ecosystem and would resolve some ongoing issues.
 
 ## License
 ```
