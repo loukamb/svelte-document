@@ -5,6 +5,9 @@
 
 Create documents, resumes, or presentations from a collection of Svelte files. No configuration needed, and exports to a very portable PDF file.
 
+> [!IMPORTANT]
+> This is an experimental project and more of a toy than something ready for production use. You shouldn't use this for anything (too) serious.
+
 ## Usage
 
 ### Getting started
